@@ -60,7 +60,7 @@ In the example above, you would specify the `web` process in the [`[[services]]`
   ...
 ```
 
-Fly Proxy doesn't know about process groups: it load-balances requests among all Machines with a service configured on the requested port. If more than one process group needs services defined, make sure they handle connections on different external ports, using multiple `[[services]]` sections.
+**NB:** If multiple processes listen on the same port, our Fly Proxy will load-balance requests between these. (This is because it doesn't know about process groups: it load-balances requests among all Machines with a service configured on the requested port.) So if you need to expose different processes distinctly, you should take care of exposing them on different external ports, using multiple `[[services]]` sections (more precisely in the `[[services.ports]]` subsections).
 
 ## Deployment
 
